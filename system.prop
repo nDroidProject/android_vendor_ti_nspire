@@ -1,0 +1,9 @@
+#
+# system.prop for TI Nspire CX Models
+#
+ro.debuggable=1
+ro.secure=0
+wifi.interface=wlan0
+wlan.driver.status=ok
+# Required for "Home" to work
+DEVICE_PROVISIONED=1

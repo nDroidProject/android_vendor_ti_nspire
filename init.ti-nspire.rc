@@ -1,0 +1,20 @@
+on property:init.svc.wpa_supplicant=stopped
+    stop dhcpcd
+
+# compass/accelerometer daemon
+service akmd /system/bin/akmd
+    user compass
+    group compass misc input
+
+service wpa_supplicant /system/bin/wpa_supplicant \
+    -Dwext -iwlan0 -c/data/misc/wifi/wpa_supplicant.conf
+    user wifi
+    group wifi inet
+    socket wlan0 dgram 660 wifi wifi
+    disabled
+    oneshot
+
+service dhcpcd /system/bin/dhcpcd wlan0
+    group system dhcp
+    disabled
+    oneshot
